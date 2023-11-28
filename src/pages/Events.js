@@ -1,15 +1,30 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
-const DUMMY_EXAMPLE = [1, 2, 3];
+import EventsList from '../components/EventsList';
 
-function Events() {
-    return <ul>
-        {DUMMY_EXAMPLE.map((example) => {
-            return <li key={example}>
-                <Link to={"/events/"+example}>Example {example}</Link>
-            </li>
-        })}
-    </ul>;
+function EventsPage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchedEvents, setFetchedEvents] = useState();
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    async function fetchEvents() {
+      setIsLoading(true);
+      
+      setIsLoading(false);
+    }
+
+    fetchEvents();
+  }, []);
+  return (
+    <>
+      <div style={{ textAlign: 'center' }}>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+      </div>
+      {!isLoading && fetchedEvents && <EventsList events={fetchedEvents} />}
+    </>
+  );
 }
 
-export default Events;
+export default EventsPage;
