@@ -1,9 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useSubmit } from 'react-router-dom';
 import classes from './EventItem.module.css';
 
 function EventItem({ event }) {
   function startDeleteHandler() {
-    // ...
+    // Another to submit route actions programmatically
+    const submit = useSubmit();
+    submit(null, {
+      method: "DELETE"
+    });
   }
 
   return (
