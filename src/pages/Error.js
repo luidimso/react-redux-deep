@@ -1,5 +1,18 @@
+import { useRouteError } from "react-router-dom";
+
 function ErrorPage() {
-    return <k1>An error ocurred!</k1>
+    const error = useRouteError();
+    let message = "An error ocurred!";
+
+    if(error.status == 500) {
+        message = JSON.parse(error.data).message;
+    }
+
+    if(error.status == 404) {
+        message = "Page not found";
+    }
+
+    return <p>{message}</p>
 }
 
 export default ErrorPage;

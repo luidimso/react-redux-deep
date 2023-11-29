@@ -20,17 +20,19 @@ function EventsPage() {
 export default EventsPage;
 
 export async function loader() {
-    const response = await fetch('http://localhost:8080/eventssdsdsd');
+    const response = await fetch('http://localhost:8080/events');
 
     if (!response.ok) {
     //   return {
     //     error: true,
-    //     message: "Failed to load data"
+    //     message: ""
     //   };
 
-      throw {
+      throw new Response(JSON.stringify({
         message: "Failed to load data"
-      } 
+      }), {
+        status: 500
+      });
     } else {
       return response;
     }

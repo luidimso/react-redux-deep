@@ -33,10 +33,10 @@ import ErrorPage from "./pages/Error";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: <RootLayout />, errorElement: <ErrorPage></ErrorPage>,
     children: [
       {index: true, element: <HomePage />},
-      {path: "events", element: <EventsRootLayout></EventsRootLayout>, errorElement: <ErrorPage></ErrorPage>, children: [
+      {path: "events", element: <EventsRootLayout></EventsRootLayout>, children: [
         {index: true, element: <Events />, loader: eventsLoader},
         {path: ":id", element: <EventDetails />},
         {path: "new", element: <NewEvent />},
