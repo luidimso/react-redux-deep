@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { json, useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
@@ -28,9 +28,15 @@ export async function loader() {
     //     message: ""
     //   };
 
-      throw new Response(JSON.stringify({
-        message: "Failed to load data"
-      }), {
+      // throw new Response(JSON.stringify({
+      //   message: "Failed to load data"
+      // }), {
+      //   status: 500
+      // });
+
+      throw json({
+        message: "Failed to load data with JSON"
+      }, {
         status: 500
       });
     } else {
